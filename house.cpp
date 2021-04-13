@@ -9,6 +9,7 @@ void display() {
 	glMatrixMode(GL_MODELVIEW);
 	/* draw scene */
 	glPushMatrix();
+	
 	// house
 	glPushMatrix();
 	// building
@@ -26,63 +27,68 @@ void display() {
 	glTranslatef(2, 1.25, 1);
 	glutSolidCube(.25);
 	glPopMatrix();
-		
+			
 	// car
-	// body
+	
 	glPushMatrix();
-	glTranslatef(-3, -4, 0);
+	glTranslatef(-3, -4, .3);
 	glScalef(3, 1, 1.5);
-	glutSolidCube(.5);
+	glutSolidCube(.5); // body
 	glPopMatrix();
 
 
 	glPushMatrix();
-	glTranslatef(-4, -4.75, .2);
+	glTranslatef(-3.9, -4.50, .65);
 	glScalef(2,2,2);
 	glutSolidTorus(.05, .1, 8, 8); // wheel 1
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-2.25, -4.25, .5);
+	glTranslatef(-2.5, -4.25, .7);
 	glScalef(2, 2, 2);
 	glutSolidTorus(.05, .1, 8, 8); // wheel 2
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-3, -3.5, -.02);
+	glTranslatef(-4, -4.5, -.3);
 	glScalef(2, 2, 2);
 	glutSolidTorus(.05, .1, 8, 8); // wheel 3
 	glPopMatrix();
 
 	glPushMatrix();
-	glTranslatef(-1.75, -3.75, -.02);
+	glTranslatef(-2.5, -4.5, -.3);
 	glScalef(2, 2, 2);
 	glutSolidTorus(.05, .1, 8, 8); // wheel 4
 	glPopMatrix();
+	
 
+	// Extra Scenery
+	
+	// Tree trunk
+	glPushMatrix();
+	GLUquadricObj* quadratic;
+	quadratic = gluNewQuadric();
+	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+	glTranslatef(2.4, .15, 0);
+	gluCylinder(quadratic, .25, .25, .5, 32, 32);
+	glPopMatrix();
+	
+	// Tree branches
+	// base branch
+	glPushMatrix();
+	glTranslatef(2.25, 0, 0);
+	glRotatef(180, 0, 1, 1);
+	glutSolidCone(.50, .50, 16, 8);
+	glPopMatrix();
 
+	//top branch
+	glPushMatrix();
+	glTranslatef(2.25, .5, 0);
+	glRotatef(180, 0, 1, 1);
+	glutSolidCone(.35, .35, 16, 8);
+	glPopMatrix();
 
-	//........
-	//	.......
-	//	........
-
-
-	//.......
-	//	........
-	//	..........
-	//	.........
-		//glutSolidTorus(.05, .1, 8, 8); // wheel
-	//........
-		//glutSolidTorus(.05, .1, 8, 8); // wheel
-	//........
-	//	........
-	//	........
-	//	........
-		//glutSolidTorus(.05, .1, 8, 8); // wheel
-	// .........
-		//glutSolidTorus(.05, .1, 8, 8); // wheel
-	// ...........
-		glPopMatrix();
+	glPopMatrix();
 	glPopMatrix();
 	/* flush drawing routines to the window */
 	glFlush();
